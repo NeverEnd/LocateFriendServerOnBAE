@@ -30,11 +30,20 @@ public class GetFriendListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		JSONObject json=new JSONObject();
-		json.put("name", "user_one");
+		
+		JSONArray array = new JSONArray();
+		for(int i =0;i< 5;i++)
+		{
+		    JSONObject json=new JSONObject();
+		    json.put("name", "user_"+i);
+		    json.put("x", 116468940+i*5000);
+		    json.put("y", 39890560);
+		    array.add(json);
+		    
+		}
 		response.setStatus(HttpServletResponse.SC_OK);
 		PrintWriter output = response.getWriter();
-		output.println(json.toString());
+		output.println(array.toString());
 		output.flush();
 		output.close();
 		//response.sendRedirect("./GetFriend?friend="+json.toString());				
